@@ -35,7 +35,7 @@ for (const [ph, file] of [
   ['__PH_PRESS__', 'press.jpg'], ['__PH_VASE1__', 'vase1.jpg'],
   ['__PH_VASE2__', 'vase2.jpg'], ['__PH_VASE3__', 'vase3.jpg'],
   ['__PH_STARS__', 'stars.jpg'], ['__PH_FAIR__', 'fair.jpg'],
-  ['__PH_FAIRWIDE__', 'fairwide.jpg'],
+  ['__PH_FAIRWIDE__', 'fairwide.jpg'], ['__PH_EARTH__', 'earth.jpg'],
 ]) html = html.replace(ph, thumb(file))
 
 // Download-pill size claim: measured from the actual shell the download link

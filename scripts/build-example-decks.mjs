@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 The Bento authors
-// The gallery decks — four distinct art directions distilled from
+// The gallery decks — six distinct art directions distilled from
 // Awwwards Site-of-the-Year style FAMILIES (immersive dark tech,
-// editorial typography, premium minimal commerce, playful toy-like).
+// editorial typography, premium minimal commerce, playful toy-like,
+// corporate strategy, sustainability impact).
 // All brands and content are FICTIONAL; nothing is copied from any site.
 //
 //   node scripts/build-example-decks.mjs [outDir]     (default: working/)
@@ -742,6 +743,217 @@ function deckPicnic() {
   })
 }
 
+// ═══════════════════════════════════════════════════════════════════════
+// DECK E · «MERIDIAN» — corporate strategy (McKinsey / BCG family)
+// Deep navy, warm gold, crisp white. Data-forward, no decoration.
+// ═══════════════════════════════════════════════════════════════════════
+function deckMeridian() {
+  const NAVY = '#0C1B33', GOLD = '#C9A962', WHITE = '#F5F6F8', INK = '#0E1A2B'
+  const MIST = 'rgba(245,246,248,0.62)', SLATE = 'rgba(14,26,43,0.58)'
+  const label = (x, y, s, color = GOLD) => text({ x, y, w: 600, h: 22, html: s, fontSize: 11, fontWeight: 700, letterSpacing: 4, color, fontFamily: IN })
+  const rule = (x, y, w, color = GOLD) => shape('rect', { x, y, w, h: 2, fill: color })
+
+  const s1 = slide({
+    id: 'mer-cover', background: NAVY, transition: 'none',
+    notes: 'TEMPLATE — “Meridian”, a corporate strategy deck. Style family: deep navy, one gold accent, Instrument Sans throughout. The cover is pure type — a gold rule and the wordmark morph through the deck. No photos: the template teaches restraint.',
+    elements: [
+      label(96, 96, 'MERIDIAN ADVISORY — Q3 STRATEGY REVIEW'),
+      rule(96, 130, 160),
+      text({ id: 'mer-title', x: 90, y: 168, w: 1100, h: 280, html: 'Strategy<br>that scales.', fontSize: 118, fontWeight: 800, color: WHITE, lineHeight: 0.98, fontFamily: IN }),
+      shape('rect', { id: 'mer-bar', x: 96, y: 500, w: 420, h: 4, fill: GOLD }),
+      text({ x: 96, y: 530, w: 720, h: 70, html: 'A fictional advisory firm for a very real template — swap the numbers, keep the hierarchy.', fontSize: 18, color: MIST, lineHeight: 1.55, fx: { enter: 'fade-up', order: 1 } }),
+      text({ x: 96, y: 654, w: 400, h: 22, html: 'CONFIDENTIAL · FOR DISCUSSION', fontSize: 10, fontWeight: 600, letterSpacing: 3, color: 'rgba(201,169,98,0.55)', fontFamily: MONO }),
+    ],
+  })
+
+  const s2 = slide({
+    id: 'mer-thesis', background: WHITE, transition: 'morph',
+    notes: 'Morph beat: the gold bar becomes a column, the title docks top-left. Three numbered pillars stagger in — duplicate the card pattern for your own framework.',
+    elements: [
+      text({ id: 'mer-title', x: 96, y: 72, w: 520, h: 56, html: 'Strategy that scales.', fontSize: 34, fontWeight: 800, color: SLATE, fontFamily: IN }),
+      shape('rect', { id: 'mer-bar', x: 96, y: 136, w: 6, h: 480, fill: GOLD }),
+      label(120, 150, '01 · EXECUTIVE SUMMARY', NAVY),
+      text({ x: 120, y: 188, w: 980, h: 120, html: 'Growth is available — but only if the<br>operating model moves first.', fontSize: 52, fontWeight: 800, color: INK, lineHeight: 1.08, fontFamily: IN, fx: { enter: 'fade-up' } }),
+      ...[
+        ['Focus the portfolio', 'Exit three lines that dilute margin.'],
+        ['Rebuild the core', 'One platform, not seven spreadsheets.'],
+        ['Fund the frontier', 'Two bets, measured in quarters not years.'],
+      ].flatMap(([t, b], i) => [
+        text({ x: 120, y: 340 + i * 108, w: 48, h: 48, html: String(i + 1), fontSize: 28, fontWeight: 800, color: GOLD, fontFamily: MONO, fx: { enter: 'fade-up', order: i + 1 } }),
+        text({ x: 180, y: 338 + i * 108, w: 860, h: 36, html: `<b>${t}</b>`, fontSize: 22, fontWeight: 700, color: INK, fx: { enter: 'fade-up', order: i + 1 } }),
+        text({ x: 180, y: 372 + i * 108, w: 860, h: 30, html: b, fontSize: 16, color: SLATE, fx: { enter: 'fade-up', order: i + 1 } }),
+      ]),
+    ],
+  })
+
+  const s3 = slide({
+    id: 'mer-growth', background: NAVY, transition: 'fade',
+    notes: 'The data slide — a dual-axis chart (bars + line) art-directed in navy and gold. Charts are template JSON; swap categories and series.',
+    elements: [
+      label(96, 84, '02 · REVENUE TRAJECTORY'),
+      text({ x: 96, y: 120, w: 900, h: 70, html: 'Compounding, not hoping.', fontSize: 48, fontWeight: 800, color: WHITE, fontFamily: IN }),
+      chart({ x: 96, y: 230, w: 1088, h: 420, preset: 'bar', option: {
+        grid: { left: 50, right: 50, top: 24, bottom: 36 },
+        color: [GOLD, 'rgba(245,246,248,0.85)'],
+        tooltip: { trigger: 'axis' },
+        legend: { top: 0, textStyle: { color: MIST, fontSize: 12 } },
+        xAxis: { type: 'category', data: ['2022', '2023', '2024', '2025', '2026E'] },
+        yAxis: [
+          { type: 'value', name: 'Revenue ($M)', axisLabel: { color: MIST } },
+          { type: 'value', name: 'Margin %', axisLabel: { formatter: '{value}%', color: MIST } },
+        ],
+        series: [
+          { type: 'bar', name: 'Revenue', data: [42, 58, 71, 89, 112], itemStyle: { color: GOLD }, barWidth: 72 },
+          { type: 'line', name: 'Margin', yAxisIndex: 1, data: [18, 21, 24, 27, 31],
+            lineStyle: { width: 3, color: WHITE }, symbol: 'circle', symbolSize: 8, itemStyle: { color: WHITE } },
+        ],
+      }, fx: { enter: 'fade-up' } }),
+    ],
+  })
+
+  const pillars = [
+    ['Platform', 'Unify data, pricing and fulfilment on one stack.'],
+    ['Talent', 'Hire for judgment, not headcount.'],
+    ['Capital', 'Recycle savings into two measured bets.'],
+  ]
+  const s4 = slide({
+    id: 'mer-pillars', background: WHITE, transition: 'fade',
+    notes: 'Three equal columns — the consulting classic. Shadow presets give depth without photos.',
+    elements: [
+      label(96, 84, '03 · OPERATING PRIORITIES'),
+      rule(96, 118, 1088, 'rgba(14,26,43,0.12)'),
+      text({ x: 96, y: 148, w: 800, h: 60, html: 'Where to place the next dollar.', fontSize: 44, fontWeight: 800, color: INK, fontFamily: IN }),
+      ...pillars.flatMap(([t, b], i) => {
+        const x = 96 + i * 376
+        return [
+          shape('rect', { x, y: 260, w: 336, h: 340, radius: 12, fill: WHITE, stroke: 'rgba(14,26,43,0.08)', strokeWidth: 1, shadow: { y: 14, blur: 36, color: 'rgba(12,27,51,0.12)' }, fx: { enter: 'fade-up', order: i } }),
+          shape('rect', { x: x + 24, y: 290, w: 48, h: 4, fill: GOLD, fx: { enter: 'fade-up', order: i } }),
+          text({ x: x + 24, y: 312, w: 288, h: 40, html: t, fontSize: 24, fontWeight: 800, color: INK, fx: { enter: 'fade-up', order: i } }),
+          text({ x: x + 24, y: 360, w: 288, h: 180, html: b, fontSize: 16, color: SLATE, lineHeight: 1.65, fx: { enter: 'fade-up', order: i } }),
+        ]
+      }),
+    ],
+  })
+
+  const s5 = slide({
+    id: 'mer-end', background: NAVY, transition: 'morph',
+    notes: 'Close where you opened — title and bar morph home. End on the practical next step.',
+    elements: [
+      label(96, 96, 'MERIDIAN ADVISORY'),
+      text({ id: 'mer-title', x: 90, y: 180, w: 1100, h: 220, html: 'Ready when<br>you are.', fontSize: 108, fontWeight: 800, color: WHITE, lineHeight: 0.98, fontFamily: IN }),
+      shape('rect', { id: 'mer-bar', x: 96, y: 460, w: 1088, h: 4, fill: GOLD }),
+      text({ x: 96, y: 500, w: 900, h: 40, html: 'meridian-advisory.example — a fictional firm for a real template', fontSize: 16, fontWeight: 600, color: MIST, letterSpacing: 1 }),
+      text({ x: 96, y: 654, w: 500, h: 22, html: 'NEXT REVIEW · 14 OCT · BOARD ROOM 3', fontSize: 10, fontWeight: 600, letterSpacing: 3, color: 'rgba(201,169,98,0.55)', fontFamily: MONO }),
+    ],
+  })
+
+  return doc({
+    title: 'Meridian — corporate strategy template', withFonts: ['Instrument Sans'],
+    theme: { background: NAVY, color: WHITE, accent: GOLD, fontFamily: IN },
+    slides: [s1, s2, s3, s4, s5],
+  })
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// DECK F · «CANOPY» — sustainability impact (Patagonia / 1% family)
+// Forest greens, warm cream, one earth photograph. Quiet conviction.
+// ═══════════════════════════════════════════════════════════════════════
+function deckCanopy() {
+  const FOREST = '#1B3D2F', MOSS = '#4A7C59', CREAM = '#F0EBE3', LEAF = '#8FB996'
+  const INK = '#142820', MIST = 'rgba(20,40,32,0.58)', BONE = '#FAF7F2'
+  const kick = (x, y, s, color = MOSS) => text({ x, y, w: 600, h: 22, html: s, fontSize: 11, fontWeight: 700, letterSpacing: 4, color, fontFamily: IN })
+  const rule = (x, y, w, color = MOSS) => shape('rect', { x, y, w, h: 2, fill: color })
+
+  const s1 = slide({
+    id: 'can-cover', background: FOREST, transition: 'none',
+    notes: 'TEMPLATE — “Canopy”, a sustainability impact deck. Style family: forest greens, cream paper, Fraunces headlines. The cover is a NASA Earth photograph (public domain) under a deep green scrim — swap the photo, keep the recipe: image → scrim → type.',
+    elements: [
+      img({ asset: 'ph-earth', x: 0, y: 0, w: 1280, h: 720, fx: { ambient: 'kenburns', ken: { dir: 'drift', scale: 1.08, duration: 26 } } }),
+      shape('rect', { x: 0, y: 0, w: 1280, h: 720, fill: 'rgba(27,61,47,0.68)' }),
+      kick(96, 96, 'CANOPY TRUST — 2026 IMPACT REPORT', LEAF),
+      rule(96, 130, 200, LEAF),
+      text({ id: 'can-title', x: 86, y: 160, w: 900, h: 280, html: 'Protect<br>what remains.', fontSize: 112, fontFamily: FR, fontWeight: 900, color: BONE, lineHeight: 0.96 }),
+      shape('rect', { id: 'can-bar', x: 96, y: 500, w: 280, h: 56, fill: MOSS, radius: 4 }),
+      text({ x: 96, y: 514, w: 280, h: 30, html: 'READ THE REPORT', fontSize: 13, fontWeight: 800, color: BONE, align: 'center', letterSpacing: 3, fontFamily: IN }),
+      text({ x: 400, y: 508, w: 560, h: 50, html: 'Twelve watersheds. One coalition.<br>A fictional trust for a real template.', fontSize: 17, color: 'rgba(250,247,242,0.82)', lineHeight: 1.5, fx: { enter: 'fade-up', order: 1 } }),
+      text({ x: 96, y: 654, w: 900, h: 22, html: 'EARTH FROM THE ISS · NASA — PUBLIC DOMAIN', fontSize: 10, fontWeight: 600, letterSpacing: 3, color: 'rgba(250,247,242,0.5)' }),
+    ],
+  })
+
+  const s2 = slide({
+    id: 'can-mission', background: CREAM, transition: 'morph',
+    notes: 'Morph beat: the green bar becomes a column, the title shrinks into the margin. The manifesto line is the whole slide.',
+    elements: [
+      text({ id: 'can-title', x: 96, y: 84, w: 480, h: 70, html: 'Protect what remains.', fontSize: 36, fontFamily: FR, fontWeight: 900, color: MIST, lineHeight: 1 }),
+      shape('rect', { id: 'can-bar', x: 96, y: 168, w: 8, h: 460, fill: MOSS }),
+      kick(130, 168, 'OUR THESIS'),
+      text({ x: 130, y: 210, w: 980, h: 320, html: 'We do not need more reports.<br>We need <i>fewer excuses</i><br>and more acres under care.', fontSize: 58, fontFamily: FR, fontWeight: 900, color: INK, lineHeight: 1.12, fx: { enter: 'fade-up' } }),
+      text({ x: 130, y: 560, w: 700, h: 40, html: '— Canopy Trust, annual letter to supporters', fontSize: 15, color: MIST, fx: { enter: 'fade-up', order: 2 } }),
+    ],
+  })
+
+  const s3 = slide({
+    id: 'can-land', background: CREAM, transition: 'fade',
+    notes: 'Impact pie chart — brand the palette (moss, leaf, forest, cream) and let the headline do the persuading.',
+    elements: [
+      kick(96, 84, 'LAND UNDER PROTECTION'),
+      text({ x: 96, y: 130, w: 800, h: 70, html: 'Acres that stayed wild.', fontSize: 52, fontFamily: FR, fontWeight: 900, color: INK }),
+      chart({ x: 90, y: 230, w: 580, h: 420, preset: 'pie', option: {
+        color: [MOSS, LEAF, FOREST, '#C4A574'],
+        tooltip: { trigger: 'item', formatter: '{b}: {d}%' },
+        legend: { bottom: 0, textStyle: { color: MIST, fontSize: 12 } },
+        series: [{ type: 'pie', radius: ['42%', '70%'],
+          data: [
+            { name: 'Watershed easements', value: 44 },
+            { name: 'Community forests', value: 28 },
+            { name: 'Restoration plots', value: 18 },
+            { name: 'Research reserves', value: 10 },
+          ], label: { show: false } }],
+      }, fx: { enter: 'fade-up' } }),
+      text({ x: 720, y: 300, w: 460, h: 220, html: 'Every slice is a place with a name,<br>a steward, and a twenty-year plan.<br>Swap the categories — the recipe<br>is palette + headline + one chart.', fontSize: 18, color: MIST, lineHeight: 1.65, fx: { enter: 'fade-up', order: 2 } }),
+    ],
+  })
+
+  const s4 = slide({
+    id: 'can-metrics', background: FOREST, transition: 'fade',
+    notes: 'The numbers slide — count-up on the hero stat, a simple bar chart beside it. Restraint reads as credibility.',
+    elements: [
+      kick(96, 84, 'BY THE NUMBERS', LEAF),
+      rule(96, 118, 1088, 'rgba(143,185,150,0.35)'),
+      text({ x: 96, y: 160, w: 420, h: 120, html: '2.4M', fontSize: 96, fontWeight: 900, color: BONE, fontFamily: IN, fx: { countUp: true, enter: 'fade-up' } }),
+      text({ x: 96, y: 290, w: 420, h: 40, html: 'acres under long-term care', fontSize: 20, fontWeight: 600, color: LEAF, fx: { enter: 'fade-up', order: 1 } }),
+      chart({ x: 560, y: 180, w: 624, h: 420, preset: 'bar', option: {
+        grid: { left: 40, right: 16, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: ['2019', '2021', '2023', '2025'] },
+        yAxis: { type: 'value' },
+        color: [LEAF],
+        tooltip: { trigger: 'item', formatter: '{b}: {c}K acres' },
+        series: [{ type: 'bar', data: [420, 890, 1560, 2400],
+          itemStyle: { color: LEAF, borderRadius: [6, 6, 0, 0] }, barWidth: 80 }],
+      }, fx: { enter: 'fade-up', order: 2 } }),
+    ],
+  })
+
+  const s5 = slide({
+    id: 'can-end', background: CREAM, transition: 'morph',
+    notes: 'Close on cream — title and bar morph home. End on the supporter line.',
+    elements: [
+      kick(96, 84, 'CANOPY TRUST — 2026'),
+      rule(96, 118, 1088, 'rgba(74,124,89,0.25)'),
+      text({ id: 'can-title', x: 86, y: 160, w: 1100, h: 260, html: 'The work<br>continues.', fontSize: 108, fontFamily: FR, fontWeight: 900, color: INK, lineHeight: 0.96 }),
+      shape('rect', { id: 'can-bar', x: 96, y: 480, w: 1088, h: 56, fill: MOSS, radius: 4 }),
+      text({ x: 96, y: 494, w: 1088, h: 30, html: 'canopy-trust.example — a fictional coalition for a real template', fontSize: 15, fontWeight: 600, color: BONE, align: 'center', letterSpacing: 1, fontFamily: IN }),
+    ],
+  })
+
+  return doc({
+    title: 'Canopy — sustainability template', withFonts: true,
+    assets: { 'ph-earth': photo('orbital-earth.jpg') },
+    theme: { background: CREAM, color: INK, accent: MOSS, fontFamily: IN },
+    slides: [s1, s2, s3, s4, s5],
+  })
+}
+
 // ——— splice + write ————————————————————————————————————————————————
 const outDir = process.argv[2] ?? join(root, 'working')
 mkdirSync(outDir, { recursive: true })
@@ -751,6 +963,8 @@ for (const [file, build] of [
   ['terra-premium-product.bento.html', deckTerra],
   ['orbital-dark-immersive.bento.html', deckOrbital],
   ['picnic-playful.bento.html', deckPicnic],
+  ['meridian-corporate-strategy.bento.html', deckMeridian],
+  ['canopy-sustainability.bento.html', deckCanopy],
 ]) {
   uid = 0
   const d = build()
