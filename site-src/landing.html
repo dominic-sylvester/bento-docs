@@ -392,7 +392,7 @@ section:not(.paper) .card p { color: var(--mist); }
 .paper .chip { color: var(--ink-soft); border-color: rgba(13, 27, 46, 0.22); }
 .paper .chip b { color: #C25B3F; }
 
-/* gallery — four template posters, each in its own art direction */
+/* gallery — six template posters, each in its own art direction */
 .gal { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
 .gcard {
   border-radius: 18px;
@@ -475,6 +475,25 @@ section:not(.paper) .card p { color: var(--mist); }
 .gp-picnic .pol { left: 48%; top: 50%; width: 19%; height: 42%; border-radius: 8px; background: #fff; border: 2.5px solid #201A31; box-shadow: 5px 6px 0 #201A31; transform: rotate(-5deg); }
 .gp-picnic .polp { left: 49.5%; top: 53%; width: 16%; height: 30%; border-radius: 3px; background: url(__PH_FAIR__) center/cover; transform: rotate(-5deg); }
 .gp-picnic .cap { left: 48%; top: 84.5%; width: 19%; text-align: center; font-size: 8px; font-weight: 800; color: #201A31; transform: rotate(-5deg); }
+/* meridian poster — mirrors mer-cover: deep navy field, gold kicker + rule,
+   oversized Instrument Sans title, gold bar beneath */
+.gp-meridian { background: #0C1B33; }
+.gp-meridian .k { left: 7.5%; top: 13%; font-size: 7px; font-weight: 700; letter-spacing: 0.22em; color: #C9A962; }
+.gp-meridian .hr { left: 7.5%; top: 18%; width: 12.5%; height: 1.5px; background: #C9A962; }
+.gp-meridian .t { left: 7%; top: 22%; font-family: 'Instrument Sans', sans-serif; font-weight: 800; font-size: 34px; line-height: 0.98; color: #F5F6F8; }
+.gp-meridian .bar { left: 7.5%; top: 69%; width: 33%; height: 2px; background: #C9A962; }
+.gp-meridian .sub { left: 7.5%; top: 74%; max-width: 56%; font-size: 8px; line-height: 1.5; color: rgba(245, 246, 248, 0.62); }
+.gp-meridian .foot { left: 7.5%; bottom: 8%; font-size: 6px; font-weight: 600; letter-spacing: 0.16em; color: rgba(201, 169, 98, 0.55); }
+/* canopy poster — mirrors can-cover: earth photo under a forest scrim,
+   leaf-green kicker, Fraunces title, moss CTA bar */
+.gp-canopy { background: #1B3D2F url(__PH_EARTH__) center/cover; }
+.gp-canopy .ov { inset: 0; background: rgba(27, 61, 47, 0.68); }
+.gp-canopy .k { left: 7.5%; top: 13%; font-size: 7px; font-weight: 700; letter-spacing: 0.22em; color: #8FB996; }
+.gp-canopy .hr { left: 7.5%; top: 18%; width: 16%; height: 1.5px; background: #8FB996; }
+.gp-canopy .t { left: 6.5%; top: 22%; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 38px; line-height: 0.96; color: #FAF7F2; }
+.gp-canopy .bar { left: 7.5%; top: 69%; width: 22%; height: 10%; background: #4A7C59; border-radius: 2px; }
+.gp-canopy .cta { left: 7.5%; width: 22%; top: 71.5%; text-align: center; font-family: 'Instrument Sans', sans-serif; font-weight: 800; font-size: 7px; letter-spacing: 0.12em; color: #FAF7F2; }
+.gp-canopy .sub { left: 32%; right: 7%; top: 70%; font-size: 7.5px; line-height: 1.45; color: rgba(250, 247, 242, 0.82); }
 
 /* code vignette — the honest document */
 .codebox {
@@ -632,7 +651,7 @@ body.kdeck header, body.kdeck footer { display: none; }
     <div class="kicker rv">The gallery</div>
     <hr class="hairline rv" style="max-width:220px">
     <h2 class="rv">Start from something beautiful.</h2>
-    <p class="lede rv d1">Four templates, four art directions, and each one is a <b>complete working file</b>. Open one: it boots straight into the app. Save it and it becomes your own deck, fresh identity and all. Every deck below was <b>designed and written by an AI agent</b> editing the document directly.</p>
+    <p class="lede rv d1">Six templates, six art directions, and each one is a <b>complete working file</b>. Open one: it boots straight into the app. Save it and it becomes your own deck, fresh identity and all. Every deck below was <b>designed and written by an AI agent</b> editing the document directly.</p>
     <div class="gal">
       <div class="gcard rv">
         <a class="gposter gp-signal" href="/gallery/signal-editorial-type.bento.html" target="_blank" rel="noopener" aria-label="Open the Signal template in a new tab">
@@ -703,6 +722,41 @@ body.kdeck header, body.kdeck footer { display: none; }
           <div class="gacts">
             <a class="gbtn" href="/gallery/picnic-playful.bento.html" target="_blank" rel="noopener">Open ↗</a>
             <a class="gbtn" href="/gallery/picnic-playful.bento.html" download="Pixel_Picnic.bento.html">⤓ Get</a>
+          </div>
+        </div>
+      </div>
+      <div class="gcard rv">
+        <a class="gposter gp-meridian" href="/gallery/meridian-corporate-strategy.bento.html" target="_blank" rel="noopener" aria-label="Open the Meridian template in a new tab">
+          <span class="k">MERIDIAN ADVISORY — Q3 STRATEGY REVIEW</span>
+          <span class="hr"></span>
+          <span class="t">Strategy<br>that scales.</span>
+          <span class="bar"></span>
+          <span class="sub">A fictional advisory firm for a very real template — swap the numbers, keep the hierarchy.</span>
+          <span class="foot">CONFIDENTIAL · FOR DISCUSSION</span>
+        </a>
+        <div class="gmeta">
+          <div><h3>Meridian</h3><p>Corporate strategy: navy, gold, dual-axis charts.</p></div>
+          <div class="gacts">
+            <a class="gbtn" href="/gallery/meridian-corporate-strategy.bento.html" target="_blank" rel="noopener">Open ↗</a>
+            <a class="gbtn" href="/gallery/meridian-corporate-strategy.bento.html" download="Meridian.bento.html">⤓ Get</a>
+          </div>
+        </div>
+      </div>
+      <div class="gcard rv d1">
+        <a class="gposter gp-canopy" href="/gallery/canopy-sustainability.bento.html" target="_blank" rel="noopener" aria-label="Open the Canopy template in a new tab">
+          <span class="ov"></span>
+          <span class="k">CANOPY TRUST — 2026 IMPACT REPORT</span>
+          <span class="hr"></span>
+          <span class="t">Protect<br>what remains.</span>
+          <span class="bar"></span>
+          <span class="cta">READ THE REPORT</span>
+          <span class="sub">Twelve watersheds. One coalition.<br>A fictional trust for a real template.</span>
+        </a>
+        <div class="gmeta">
+          <div><h3>Canopy</h3><p>Sustainability: forest greens, earth photo, impact charts.</p></div>
+          <div class="gacts">
+            <a class="gbtn" href="/gallery/canopy-sustainability.bento.html" target="_blank" rel="noopener">Open ↗</a>
+            <a class="gbtn" href="/gallery/canopy-sustainability.bento.html" download="Canopy.bento.html">⤓ Get</a>
           </div>
         </div>
       </div>
