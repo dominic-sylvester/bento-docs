@@ -13,8 +13,9 @@
 //
 //   node scripts/publish-site.mjs "commit message"   [--gallery] [--dry]
 //
-//   --gallery   regenerate the gallery decks first (needs a built shell at
-//               slides/dist-single/ — run `npm run build:single` or a release).
+//   --gallery   regenerate the gallery decks and org templates first (needs a
+//               built shell at slides/dist-single/ — run `npm run build:single`
+//               or a release).
 //   --dry       show what would change; don't commit or push.
 //
 // Destination repo: $BENTO_SITE_DIR, else ../bento-site beside this repo.
@@ -56,6 +57,8 @@ if (doGallery) {
   if (!existsSync(shell)) die('--gallery needs a built shell — run `npm run build:single` first')
   console.log('• regenerating gallery decks → site/gallery/')
   run('node', [join(root, 'scripts/build-example-decks.mjs'), join(site, 'gallery')])
+  console.log('• regenerating org templates → site/templates/catalyze/')
+  run('node', [join(root, 'scripts/build-catalyze-master.mjs'), join(site, 'templates/catalyze/index.html')])
 }
 
 // ---- gate: example decks MUST embed the shell being published --------------
@@ -73,10 +76,12 @@ if (existsSync(shellFile)) {
   }
   const shellHash = appHash(shellFile)
   const galleryDir = join(site, 'gallery')
+  const catalyzeMaster = join(site, 'templates/catalyze/index.html')
   const decks = [
     ...(existsSync(galleryDir) ? readdirSync(galleryDir).filter((f) => f.endsWith('.bento.html')).map((f) => join(galleryDir, f)) : []),
     join(site, '404.bento.html'),
     join(site, 'guestbook.bento.html'),
+    ...(existsSync(catalyzeMaster) ? [catalyzeMaster] : []),
   ].filter(existsSync)
   const stale = decks.filter((d) => appHash(d) !== shellHash)
   if (stale.length) {

@@ -149,6 +149,7 @@ verify the manifest signature against the public key embedded in every shell.
    into `site/` by `release.mjs`:
    - `site-src/` — the landing (`landing.html`), guestbook, 404 and QR pages.
    - `scripts/build-example-decks.mjs` + `scripts/gallery-photos/` — the gallery.
+   - `scripts/build-catalyze-master.mjs` — org slide masters at `/templates/<name>/`.
 
    So a content-only change is: edit `site-src/` (or the deck scripts) → rebuild
    → publish. For a copy tweak without cutting a new app version you can rebuild
@@ -156,7 +157,7 @@ verify the manifest signature against the public key embedded in every shell.
 
    ```sh
    node scripts/build-landing.mjs site/index.html
-   node scripts/publish-site.mjs "landing: copy tweak"        # add --gallery to regen decks
+   node scripts/publish-site.mjs "landing: copy tweak"        # add --gallery to regen decks + templates
    ```
 
    Preview any publish first with `--dry`. `publish-site.mjs` also re-seeds the

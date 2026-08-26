@@ -334,6 +334,10 @@ if (app.ownsSiteContent) {
   // (each carries template:true; opening one mints a fresh, independent deck).
   execFileSync('node', [join(root, 'scripts/build-example-decks.mjs'), join(site, 'gallery')], { stdio: 'inherit' })
 
+  // Org slide masters — self-contained templates at /templates/<name>/ (index.html
+  // so GitHub Pages serves bento.page/templates/catalyze with no extension).
+  execFileSync('node', [join(root, 'scripts/build-catalyze-master.mjs'), join(site, 'templates/catalyze/index.html')], { stdio: 'inherit' })
+
   // The agent guide at the SITE ROOT — the compat URL. The per-app copy at
   // /slides/agents.md is written above, from the same source; this one exists
   // because the README and the harness SKILL.md point at /agents.md, and that
