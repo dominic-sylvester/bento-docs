@@ -5,6 +5,7 @@
 //
 //   node scripts/build-catalyze-master.mjs [outPath]
 //     default: working/Catalyze_Master.bento.html
+//     release: site/templates/catalyze/index.html  →  bento.page/templates/catalyze
 //
 // Carries template:true — every open mints a fresh deck. Layouts live in
 // doc.layouts and appear under "This document" in Apply layout / New slide.
